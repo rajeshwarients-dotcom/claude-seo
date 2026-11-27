@@ -99,8 +99,12 @@
 .rt-sp__bar[hidden] { display: none; }
 .rt-sp__bar span { font-weight: 600; font-size: 1.4rem; white-space: nowrap; }
 .rt-sp__bar-clear { background: none; border: 0; color: #bbb; font: inherit; font-size: 1.3rem; cursor: pointer; text-decoration: underline; }
-.rt-sp__bar-go.button { min-height: 4.2rem; border-radius: 999px; background: #25d366; color: #0b2e17; font-weight: 700; padding: 0 1.8rem; }
-@media (max-width: 989px) { body.rt-sp-bar-on .rt-sp__bar { bottom: calc(7.2rem + env(safe-area-inset-bottom)); } }
+.rt-sp__bar-go.button { min-height: 4.2rem; min-width: 0; border-radius: 999px; background: #25d366; color: #0b2e17; font-weight: 700; padding: 0 1.8rem; white-space: nowrap; text-transform: none; letter-spacing: 0; }
+body.rt-sp-bar-on #kiwi-big-iframe-wrapper, body.rt-sp-bar-on #google-merchantwidget-iframe-wrapper, body.rt-sp-bar-on #worldphonecallbutton { display: none !important; }
+@media (max-width: 989px) {
+  body.rt-sp-bar-on .rt-sp__bar { bottom: calc(7.6rem + env(safe-area-inset-bottom)); left: 1rem; right: 1rem; transform: none; width: auto; max-width: none; justify-content: space-between; }
+  .rt-sp__bar span { font-size: 1.3rem; }
+}
 
 /* zoom viewer */
 .rt-sp-zoom { position: fixed; inset: 0; z-index: 1000; background: #fff; display: none; }
