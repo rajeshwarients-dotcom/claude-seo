@@ -105,8 +105,9 @@
   }
 
   function card(m) {
-    var thumb = m.img && m.img[0]
-      ? '<img src="' + img(m.img[0], 360) + '" alt="INGCO ' + esc(m.m) + ' exploded view" loading="lazy" width="180" height="140">'
+    var t0 = Array.isArray(m.img) ? m.img[0] : m.img;
+    var thumb = t0
+      ? '<img src="' + img(t0, 360) + '" alt="INGCO ' + esc(m.m) + ' exploded view" loading="lazy" width="180" height="140">'
       : '<span class="rt-sp__noimg">No drawing</span>';
     return '<a class="rt-sp__card" href="?model=' + encodeURIComponent(m.m) + '" data-open="' + esc(m.m) + '">' +
       '<span class="rt-sp__thumb">' + thumb + '</span>' +
