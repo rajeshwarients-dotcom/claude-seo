@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "rt-spare-parts", "settings": {} }
+  },
+  "order": ["main"]
+}

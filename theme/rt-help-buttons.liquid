@@ -1,0 +1,40 @@
+{%- comment -%}
+  Rajeshwari Tools — "Ask on WhatsApp" + "Get bulk price" + call buttons for the buy box.
+  Accepts: block (settings: show_bulk, show_call)
+{%- endcomment -%}
+{%- liquid
+  assign wa = settings.rt_whatsapp | remove: '+' | remove: ' ' | remove: '-'
+  assign product_link = shop.url | append: product.url
+  capture wa_text
+    echo 'Hi, I have a question about ' | append: product.title | append: ' — ' | append: product_link
+  endcapture
+  capture wa_bulk
+    echo 'Bulk inquiry: ' | append: product.title | append: ' — qty: ___ — ' | append: product_link
+  endcapture
+-%}
+<div class="rt-help" {{ block.shopify_attributes }}>
+  {%- if wa != blank -%}
+    <a
+      class="rt-help__btn rt-help__btn--wa"
+      href="https://wa.me/{{ wa }}?text={{ wa_text | url_encode }}"
+      target="_blank"
+      rel="noopener"
+    >
+      {%- render 'rt-icon', icon: 'whatsapp' -%}
+      <span>Ask on WhatsApp</span>
+    </a>
+  {%- endif -%}
+  {%- if block.settings.show_bulk -%}
+    <a class="rt-help__btn" href="#rt-bulk" data-rt-bulk-link data-wa-bulk="{{ wa_bulk | escape }}">
+      {%- render 'rt-icon', icon: 'tag' -%}
+      <span>Get bulk price</span>
+    </a>
+  {%- endif -%}
+  {%- if block.settings.show_call and settings.rt_phone != blank -%}
+    <a class="rt-help__btn" href="tel:{{ settings.rt_phone | remove: ' ' }}">
+      {%- render 'rt-icon', icon: 'phone' -%}
+      <span>Call {{ settings.rt_phone }}</span>
+    </a>
+  {%- endif -%}
+</div>
+{%- render 'rt-spare-link', product: product -%}
